@@ -1,36 +1,35 @@
-import { useState } from "react"
-
-function makeButton(diceCount, callback) {
-  return <button
-    key={`dice-count-${diceCount}`}
-    onClick={() => callback(diceCount)}
-    className="btn btn-primary">{diceCount}
-  </button>
-}
+import { useEffect, useState } from "react";
+import { Button, Buttons } from "./components/Buttons";
+import { rollDice } from "./helpers";
+import Results from "./components/Results";
+import History from "./components/History";
 
 function App() {
+  const [currentDice, setCurrentDice] = useState({ count: 0 });
+  const [historicalRolls, setHistoricalRolls] = useState([]);
 
-  const [currentDice, setCurrentDice] = useState(0)
+  useEffect(() => {
+    console.log(historicalRolls.diceCount);
+    if (currentDice.count > 0) {
+      const newEntry = rollDice(currentDice.count);
+      setHistoricalRolls([newEntry, ...historicalRolls]);
+    }
+  }, [currentDice]);
 
-  function addButtons() {
-    return Array.from(Array(25)).map((_, index) => {
-      return makeButton(index + 1, setCurrentDice)
-    })
-  }
+  return (
+    <div>
+      <h1>Hello everyone</h1>
 
-  return (<div>
-    <h1>Hello everyone</h1>
-
-    {currentDice}
-
-    <div id="buttons">{addButtons()}</div>
-    <h3>Your dice roll was: </h3>
-    <div id="result"> </div>
-    <h3>Your rolling history is: </h3>
-    <div id="log"></div>
-    <button id="monteCarlo">Monte Carlo please </button>
-    <h3>Monte Carlo table: </h3>
-  </div>
+      <div id="buttons">
+        <Buttons onAdd={setCurrentDice} />
+      </div>
+      <h3>Your dice roll was: </h3>
+      <Results entry={historicalRolls[0]} />
+      <h3>Your rolling history is: </h3>
+      <History entries={historicalRolls} />
+      <Button text="Monte Carlo me please" callback={() => {}} />
+      <h3>Monte Carlo table: </h3>
+    </div>
   );
 }
 
