@@ -11,6 +11,9 @@ body {
   margin: 5px;
 }
 
+.btn-tertiary {
+  margin: 2px;
+}
 .exceptional {
   color: green;
 }

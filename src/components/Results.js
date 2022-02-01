@@ -1,29 +1,40 @@
-import { Button } from "./Buttons";
+import Comment from "./Comment.js";
 
-function Results({ entry }) {
-  let successes = 0;
-  if (entry) {
-    successes = entry.initialRoll.filter((item) => item > 7).length;
-
-    entry.bonusRolls.forEach(
-      (arr) => (successes += arr.filter((item) => item > 7).length)
-    );
-  }
-
+function Results({ entry, addComment }) {
   return (
-    <div>
-      {" "}
-      {entry &&
-        "Dice rolled: " +
-          entry.diceCount +
-          "  | Initial roll:" +
-          entry.initialRoll}
-      {entry && entry.bonusRolls[0]
-        ? "  | Bonus rolls:" + entry.bonusRolls
-        : " "}
-      {entry && " | Total successes:" + successes}
-      <Button text="edit" callback={() => {}} />
-    </div>
+    <>
+      {entry ? (
+        <div>
+          <span>
+            Dice rolled: {entry.diceCount + " | Initial roll: "}
+            {entry.initialRoll + " "}
+          </span>
+          {!entry.successes && (
+            <>
+              | <span className="failure">Failure!</span>
+            </>
+          )}
+
+          {entry.bonusRolls[0] && (
+            <span>| Bonus rolls: {" " + entry.bonusRolls} </span>
+          )}
+          {entry.successes >= 5 ? (
+            <b className="exceptional">
+              Exceptional Success! {entry.successes}
+            </b>
+          ) : (
+            <span>
+              {" "}
+              | Successes: <b>{entry.successes}</b>
+            </span>
+          )}
+
+          <Comment entry={entry} addComment={addComment} />
+        </div>
+      ) : (
+        <> </>
+      )}
+    </>
   );
 }
 
