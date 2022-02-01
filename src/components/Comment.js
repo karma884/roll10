@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "./Buttons";
 import { getSuccessText } from "../helpers";
-import request from "../api";
+import url from "../api-url";
 
 const Comment = ({ entry, addComment }) => {
   const [comment, setComment] = useState(entry.comment ? entry.comment : "");
@@ -29,7 +29,7 @@ const Comment = ({ entry, addComment }) => {
         className="btn btn-tertiary"
         callback={async () => {
           if (showEditField) {
-            fetch("http://localhost:5000/newmessages", {
+            fetch(`${url}newmessages`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ comment, id: entry.id }),

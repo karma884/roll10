@@ -4,6 +4,7 @@ import { rollDice } from "./helpers";
 import Results from "./components/Results";
 import History from "./components/History";
 import Api from "./api";
+import url from "./api-url";
 
 function App() {
   const [currentDice, setCurrentDice] = useState({ count: 0 });
@@ -17,7 +18,7 @@ function App() {
 
   function postDice(newEntry) {
     console.log(newEntry);
-    return fetch("http://localhost:5000/entries", {
+    return fetch(`${url}entries`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newEntry),
@@ -38,7 +39,7 @@ function App() {
 
   useEffect(() => {
     //const api = new Api(fetch);
-    fetch("http://localhost:5000/entries")
+    fetch(`${url}entries`)
       .then((res) => {
         return res.json();
       })
