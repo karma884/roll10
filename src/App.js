@@ -26,7 +26,10 @@ function App() {
       .then((res) => {
         return res.json();
       })
-      .then((newHistory) => setHistoricalRolls(newHistory))
+      .then((insertedEntry) => {
+        console.log(insertedEntry);
+        setHistoricalRolls([insertedEntry, ...historicalRolls]);
+      })
       .catch((error) => console.log(error));
   }
 

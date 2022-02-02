@@ -32,7 +32,7 @@ const Comment = ({ entry, addComment }) => {
             fetch(`${url}newmessages`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ comment, id: entry.id }),
+              body: JSON.stringify({ comment, _id: entry._id }),
             })
               .then((res) => {
                 return res.json();
@@ -58,6 +58,15 @@ const Comment = ({ entry, addComment }) => {
           setShowEditField(!showEditField);
         }}
       />
+      {showEditField && (
+        <Button
+          text={"discard"}
+          className="btn btn-tertiary"
+          callback={() => {
+            setShowEditField(!showEditField);
+          }}
+        />
+      )}{" "}
       {showEditField && (
         <Button
           text={"discard"}

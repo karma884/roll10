@@ -1,6 +1,7 @@
 import Comment from "./Comment.js";
 
 function Results({ entry, addComment }) {
+  console.log("Results", entry);
   return (
     <>
       {entry ? (

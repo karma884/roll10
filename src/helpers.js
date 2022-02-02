@@ -2,11 +2,11 @@ function rollDice(diceCount) {
   const initialRoll = getRandomNumbers(diceCount);
   let bonusRolls = [];
   tensAgain(initialRoll, bonusRolls);
-  const id = Date.now();
+  //const id = Date.now();
 
   const successes = getSuccesses(initialRoll, bonusRolls);
 
-  return { diceCount, initialRoll, bonusRolls, id, successes };
+  return { diceCount, initialRoll, bonusRolls, successes };
 }
 
 function getSuccessText(successes) {
