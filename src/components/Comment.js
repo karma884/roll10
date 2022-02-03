@@ -69,11 +69,9 @@ const Comment = ({ entry, addComment }) => {
       )}{" "}
       {showEditField && (
         <Button
-          text={"discard"}
+          text={"delete ENTIRE ROLL"}
           className="btn btn-tertiary"
-          callback={() => {
-            setShowEditField(!showEditField);
-          }}
+          callback={() => {}}
         />
       )}
       {entry && entry.comment ? "  | Comment: " + entry.comment : " "}
