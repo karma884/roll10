@@ -3,7 +3,7 @@ import { Button, Buttons } from "./components/Buttons";
 import { rollDice } from "./helpers";
 import Results from "./components/Results";
 import History from "./components/History";
-import Api from "./api";
+import { deleteAll, Api } from "./api";
 import url from "./api-url";
 
 function App() {
@@ -17,7 +17,6 @@ function App() {
   }
 
   function postDice(newEntry) {
-    console.log(newEntry);
     return fetch(`${url}entries`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -27,7 +26,6 @@ function App() {
         return res.json();
       })
       .then((insertedEntry) => {
-        console.log(insertedEntry);
         setHistoricalRolls([insertedEntry, ...historicalRolls]);
       })
       .catch((error) => console.log(error));
@@ -54,7 +52,6 @@ function App() {
   return (
     <div>
       <h1>Ray and Marju's Vampire dice rolls</h1>
-
       <div id="buttons">
         <Buttons onAdd={setCurrentDice} />
       </div>
@@ -62,6 +59,11 @@ function App() {
       <Results entry={historicalRolls[0]} addComment={addComment} />
       <h3>Your rolling history is: </h3>
       <History entries={historicalRolls} addComment={addComment} />
+      <Button
+        text="DELETE ALL ROLLS"
+        className="btn btn-primary"
+        callback={() => deleteAll(setHistoricalRolls)}
+      />{" "}
       <Button
         text="Monte Carlo me please"
         className="btn btn-secondary"

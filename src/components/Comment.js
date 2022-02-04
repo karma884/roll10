@@ -29,7 +29,7 @@ const Comment = ({ entry, addComment }) => {
         className="btn btn-tertiary"
         callback={async () => {
           if (showEditField) {
-            fetch(`${url}newmessages`, {
+            fetch(`${url}newcomment`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ comment, _id: entry._id }),
@@ -37,7 +37,7 @@ const Comment = ({ entry, addComment }) => {
               .then((res) => {
                 return res.json();
               })
-              .then((data) => console.log(data))
+              .then((data) => addComment(entry, data.comment))
               .catch((error) => console.log(error));
 
             // const result = await request(
@@ -50,7 +50,6 @@ const Comment = ({ entry, addComment }) => {
             //   fetch
             // );
             // console.log(result);
-            addComment(entry, comment);
           } else {
             setComment(entry.comment);
           }
