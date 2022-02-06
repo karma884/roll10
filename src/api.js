@@ -15,15 +15,26 @@ class Api {
 }
 
 async function deleteAll(setHistoricalRolls) {
-  const deleteResponse = await fetch(`${url}entries`, {
+  const response = await fetch(`${url}entries`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ collectionToDelete: "historicalRolls" }),
   });
-  const deleteObject = await deleteResponse.json();
+  const deleteObject = await response.json();
   console.log(deleteObject);
   setHistoricalRolls([]);
 }
 
+async function signUp(formValues) {
+  //const response =
+  await fetch(`${url}users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formValues),
+  });
+  //const data = await response.json();
+  //console.log(data);
+}
+
 //const request = async (url, options, fetch = fetch) =>
-export { deleteAll, Api };
+export { deleteAll, Api, signUp };

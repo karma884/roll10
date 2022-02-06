@@ -20,3 +20,17 @@ body {
 .failure {
   color: red;
 }
+
+.flex {
+  display: flex;
+  align-items: baseline;
+}
+.sidebar {
+  border: 3px solid red;
+  width: 300px;
+  text-align: left;
+}
+.game {
+  border: 3px solid green;
+  text-align: center;
+}
