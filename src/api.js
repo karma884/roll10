@@ -1,9 +1,9 @@
 import url from "./api-url";
 class Api {
   constructor(request, url, token) {
-    this.request = request
-    this.url = url
-    this.token = token
+    this.request = request;
+    this.url = url;
+    this.token = token;
   }
 
   async deleteAll() {
@@ -12,29 +12,29 @@ class Api {
       body: { collectionToDelete: "historicalRolls" },
     });
 
-    return data
+    return data;
   }
 
   async addComment({ comment, _id }) {
     const data = this.request(`${this.url}newcomment`, {
       method: "POST",
       body: { comment, _id },
-    })
+    });
 
-    return data
+    return data;
   }
 
   async addEntry(newEntry) {
     const data = this.request(`${this.url}entries`, {
       method: "POST",
       body: newEntry,
-    })
-    return data
+    });
+    return data;
   }
 
   async getEntries() {
-    const data = this.request(`${this.url}entries`)
-    return data
+    const data = this.request(`${this.url}entries`);
+    return data;
   }
 }
 
@@ -51,7 +51,7 @@ async function deleteAll(setHistoricalRolls) {
 
 async function signUp(formValues) {
   //const response =
-  await fetch(`${url}users`, {
+  await fetch(`${url}users/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formValues),
