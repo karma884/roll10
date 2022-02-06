@@ -13,7 +13,7 @@ function Results({ entry, addComment }) {
           {entry.bonusRolls[0] && <span>{`| Bonus rolls:  ${entry.bonusRolls} `}</span>}
 
           {entry.successes >= 5 ? (
-            <b className="exceptional"> Exceptional Success! {entry.successes}</b>
+            <b className="exceptional"> Exceptional Success! {entry.successes} </b>
           ) : (
             <span>{" "} | Successes: <b>{entry.successes}</b></span>
           )}

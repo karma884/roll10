@@ -39,7 +39,6 @@ function Game() {
   }, [currentDice]);
 
   useEffect(() => {
-    //const api = new Api(fetch);
     fetch(`${url}entries`)
       .then((res) => {
         return res.json();
@@ -67,7 +66,7 @@ function Game() {
       <Button
         text="Monte Carlo me please"
         className="btn btn-secondary"
-        callback={() => {}}
+        callback={() => { }}
       />
       <h3>Monte Carlo table: </h3>
     </div>
