@@ -63,7 +63,7 @@ function Auth() {
       </div>
       <Button
         text={loggingIn ? "Log in" : "Sign up"}
-        className="btn btn-primary "
+        className="btn btn-primary ml-0"
         callback={
           loggingIn
             ? () => { }
