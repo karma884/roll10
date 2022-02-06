@@ -37,7 +37,7 @@ button:focus {
   border: 3px solid red;
   text-align: left;
   height: 100vh;
-  transition: max-width 1s ease-in-out; 
+  transition: max-width 500ms ease-in-out; 
 }
 
 .sidebar.collapsed {
@@ -52,7 +52,7 @@ button:focus {
 }
 
 .visible {
-  transition-delay: 1s;
+  transition-delay: 400ms;
   transition-property: visibility;
 }
 
