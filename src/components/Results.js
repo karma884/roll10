@@ -2,39 +2,26 @@ import Comment from "./Comment.js";
 
 function Results({ entry, addComment }) {
   return (
-    <>
-      {entry ? (
+    <div>
+      {entry && (
         <div>
           <span>
-            Dice rolled: {entry.diceCount + " | Initial roll: "}
-            {entry.initialRoll + " "}
+            {`Dice rolled: ${entry.diceCount} | Initial roll: ${entry.initialRoll}  `}
           </span>
-          {!entry.successes && (
-            <>
-              | <span className="failure">Failure!</span>
-            </>
-          )}
+          {!entry.successes && <span className="failure">| Failure!</span>}
 
-          {entry.bonusRolls[0] && (
-            <span>| Bonus rolls: {" " + entry.bonusRolls} </span>
-          )}
+          {entry.bonusRolls[0] && <span>{`| Bonus rolls:  ${entry.bonusRolls} `}</span>}
+
           {entry.successes >= 5 ? (
-            <b className="exceptional">
-              Exceptional Success! {entry.successes}
-            </b>
+            <b className="exceptional"> Exceptional Success! {entry.successes}</b>
           ) : (
-            <span>
-              {" "}
-              | Successes: <b>{entry.successes}</b>
-            </span>
+            <span>{" "} | Successes: <b>{entry.successes}</b></span>
           )}
 
           <Comment entry={entry} addComment={addComment} />
         </div>
-      ) : (
-        <> </>
       )}
-    </>
+    </div >
   );
 }
 
