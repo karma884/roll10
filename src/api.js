@@ -1,16 +1,40 @@
 import url from "./api-url";
-
 class Api {
-  constructor(fetch) {
-    this.fetch = fetch;
+  constructor(request, url, token) {
+    this.request = request
+    this.url = url
+    this.token = token
   }
-  async request(url, options) {
-    const response = await this.fetch(url, {
-      ...options,
-      headers: { ...options.headers, "Content-Type": "application/json" },
+
+  async deleteAll() {
+    const data = await this.request(`${this.url}entries`, {
+      method: "DELETE",
+      body: { collectionToDelete: "historicalRolls" },
     });
-    const data = await response.json();
-    return data;
+
+    return data
+  }
+
+  async addComment({ comment, _id }) {
+    const data = this.request(`${this.url}newcomment`, {
+      method: "POST",
+      body: { comment, _id },
+    })
+
+    return data
+  }
+
+  async addEntry(newEntry) {
+    const data = this.request(`${this.url}entries`, {
+      method: "POST",
+      body: newEntry,
+    })
+    return data
+  }
+
+  async getEntries() {
+    const data = this.request(`${this.url}entries`)
+    return data
   }
 }
 
