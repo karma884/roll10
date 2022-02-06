@@ -15,15 +15,14 @@ const Comment = ({ entry, addComment }) => {
 
   return (
     <>
-      {showEditField ? (
+      {showEditField && (
         <textarea
           value={comment}
           placeholder={getSuccessText(entry.successes)}
           onChange={editComment}
         ></textarea>
-      ) : (
-        " "
       )}
+
       <Button
         text={showEditField ? "save" : "edit"}
         className="btn btn-tertiary"
@@ -39,17 +38,6 @@ const Comment = ({ entry, addComment }) => {
               })
               .then((data) => addComment(entry, data.comment))
               .catch((error) => console.log(error));
-
-            // const result = await request(
-            //   "http://localhost:5000/newmessages",
-            //   {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({ message: comment }),
-            //   },
-            //   fetch
-            // );
-            // console.log(result);
           } else {
             setComment(entry.comment);
           }
@@ -70,10 +58,10 @@ const Comment = ({ entry, addComment }) => {
         <Button
           text={"delete ENTIRE ROLL"}
           className="btn btn-tertiary"
-          callback={() => {}}
+          callback={() => { }}
         />
       )}
-      {entry && entry.comment ? "  | Comment: " + entry.comment : " "}
+      {(entry && entry.comment) && "  | Comment: " + entry.comment}
     </>
   );
 };

@@ -14,9 +14,10 @@ const Buttons = ({ onAdd }) => {
   });
 };
 
-const Button = ({ text, className, callback }) => {
+const Button = ({ text, className, callback, children }) => {
   return (
     <button onClick={callback} className={className}>
+      {children && children}
       {text}
     </button>
   );

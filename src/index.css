@@ -14,23 +14,61 @@ body {
 .btn-tertiary {
   margin: 2px;
 }
-.exceptional {
-  color: green;
-}
-.failure {
-  color: red;
+
+button {
+  border : none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
 
-.flex {
-  display: flex;
-  align-items: baseline;
+button:focus {
+  outline: none;
 }
+
+.bi-arrow-left-short, .bi-arrow-right-short {
+  width: 30px;
+  height: 30px; 
+}
+
+/* Sidebar */
+
 .sidebar {
   border: 3px solid red;
-  width: 300px;
   text-align: left;
+  height: 100vh;
+  transition: max-width 500ms ease-in-out; 
 }
+
+.sidebar.collapsed {
+  max-width: 40px; 
+}
+
+.show-sidebar-btn {
+  width: 100%;
+  text-align: right;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.visible {
+  transition-delay: 400ms;
+  transition-property: visibility;
+}
+
+/* Game */
+
 .game {
   border: 3px solid green;
   text-align: center;
+}
+
+/* Results */
+
+.exceptional {
+  color: green;
+}
+
+.failure {
+  color: red;
 }

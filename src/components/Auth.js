@@ -7,9 +7,9 @@ function Auth() {
   const [formValues, setFormValues] = useState({});
 
   const editForm = (target, field) => {
-    const newForm = { ...formValues };
-    newForm[field] = target.value;
-    setFormValues(newForm);
+    const values = { ...formValues };
+    values[field] = target.value;
+    setFormValues(values);
   };
 
   return (
@@ -37,7 +37,7 @@ function Auth() {
         />
       </div>
 
-      <div className=" mt-3">
+      <div className="mt-3">
         {!loggingIn && (
           <input
             className="form-control"
@@ -63,13 +63,13 @@ function Auth() {
       </div>
       <Button
         text={loggingIn ? "Log in" : "Sign up"}
-        className="btn btn-primary "
+        className="btn btn-primary ml-0"
         callback={
           loggingIn
-            ? () => {}
+            ? () => { }
             : () => {
-                signUp(formValues);
-              }
+              signUp(formValues);
+            }
         }
       />
     </div>
