@@ -1,16 +1,21 @@
 class AuthApi {
-  constructor(request, url, token) {
-    this.request = request
-    this.url = url
-    this.token = token
+  constructor(url, request, token) {
+    this.request = request;
+    this.url = url;
+    this.token = token;
   }
 
   async signUp(formValues) {
-    const data = await this.request(`${this.url}users`, {
+    const data = await this.request(`${this.url}users/signup`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
+      body: formValues,
     });
-    return data
+    return data;
+  }
+
+  withToken(token) {
+    return new AuthApi(this.url, this.request, token);
   }
 }
+
+export default AuthApi;

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button } from "./Buttons"
-import { ReactComponent as ArrowLeft } from '../icons/arrow-left-short.svg';
-import { ReactComponent as ArrowRight } from '../icons/arrow-right-short.svg';
+import { Button } from "./Buttons";
+import { ReactComponent as ArrowLeft } from "../icons/arrow-left-short.svg";
+import { ReactComponent as ArrowRight } from "../icons/arrow-right-short.svg";
 import Auth from "./Auth";
+import request from "../request";
+import url from "../api-url";
+import AuthApi from "../auth-api";
 
-function Sidebar({ loggedIn }) {
-  const [visible, setVisible] = useState(true)
+const api = new AuthApi(url, (url, options) => request(url, fetch, options));
+
+function Sidebar({ loggedIn, setLoggedIn }) {
+  const [visible, setVisible] = useState(true);
 
   return (
     <div className={`sidebar ${visible ? "col-2" : "collapsed"}`}>
@@ -16,9 +21,16 @@ function Sidebar({ loggedIn }) {
       />
       <div className={visible ? "visible" : "invisible"}>
         {loggedIn ? (
-          "placeholder, you are logged in"
+          <Button
+            text="Log out"
+            callback={() => {
+              setLoggedIn(false);
+              localStorage.removeItem("token");
+            }}
+            className="btn btn-secondary"
+          />
         ) : (
-          <Auth loggedIn={loggedIn} />
+          <Auth setLoggedIn={setLoggedIn} api={api} />
         )}
       </div>
     </div>

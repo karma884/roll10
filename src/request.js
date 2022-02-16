@@ -6,10 +6,10 @@ const request = async (url, fetch, options = {}) => {
       body: JSON.stringify(options.body),
     });
     const data = await response.json();
-    return data
+    return data;
   } catch (err) {
-    return { error: err }
+    return { error: err };
   }
-}
+};
 
-export default request
+export default request;

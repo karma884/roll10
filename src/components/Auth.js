@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { Button } from "./Buttons";
-import { signUp } from "../api";
+import { testPasswordStrength } from "../pw-validation";
+// import { signUp } from "../api";
 
-function Auth() {
+function Auth({ setLoggedIn, api }) {
   const [loggingIn, setLoggingIn] = useState(true);
   const [formValues, setFormValues] = useState({});
+  const [passwordStrong, setPasswordStrong] = useState(true);
 
   const editForm = (target, field) => {
+    if (!loggingIn && field === "password") {
+      const wasPasswordStrong = testPasswordStrength(target.value).success;
+      setPasswordStrong(wasPasswordStrong);
+    }
+
     const values = { ...formValues };
     values[field] = target.value;
     setFormValues(values);
@@ -60,16 +67,28 @@ function Auth() {
           type="password"
           onChange={({ target }) => editForm(target, "password")}
         />
+        {passwordStrong ? (
+          ""
+        ) : (
+          <span>
+            Passwords require a lowercase, Uppercase, number and between 6 to 30
+            characters. You may only use letters, numbers and !@#$%^&*£ symbols.
+          </span>
+        )}
       </div>
       <Button
         text={loggingIn ? "Log in" : "Sign up"}
         className="btn btn-primary ml-0"
         callback={
           loggingIn
-            ? () => { }
-            : () => {
-              signUp(formValues);
-            }
+            ? () => {}
+            : async () => {
+                const { accessToken } = await api.signUp(formValues);
+                if (accessToken) {
+                  setLoggedIn(true);
+                  localStorage.setItem("token", accessToken);
+                }
+              }
         }
       />
     </div>

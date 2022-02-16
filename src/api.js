@@ -50,14 +50,13 @@ async function deleteAll(setHistoricalRolls) {
 }
 
 async function signUp(formValues) {
-  //const response =
-  await fetch(`${url}users/signup`, {
+  const response = await fetch(`${url}users/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formValues),
   });
-  //const data = await response.json();
-  //console.log(data);
+  const data = await response.json();
+  return data;
 }
 
 //const request = async (url, options, fetch = fetch) =>

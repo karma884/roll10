@@ -39,7 +39,9 @@ function Game() {
   }, [currentDice]);
 
   useEffect(() => {
-    fetch(`${url}entries`)
+    fetch(`${url}entries`, {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    })
       .then((res) => {
         return res.json();
       })
@@ -66,7 +68,7 @@ function Game() {
       <Button
         text="Monte Carlo me please"
         className="btn btn-secondary"
-        callback={() => { }}
+        callback={() => {}}
       />
       <h3>Monte Carlo table: </h3>
     </div>

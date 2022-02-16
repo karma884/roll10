@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="container-fluid">
       <div className="row align-items-baseline">
-        <Sidebar loggedIn={loggedIn} />
+        <Sidebar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
         {loggedIn ? (
           <Game />

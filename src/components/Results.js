@@ -10,18 +10,26 @@ function Results({ entry, addComment }) {
           </span>
           {!entry.successes && <span className="failure">| Failure!</span>}
 
-          {entry.bonusRolls[0] && <span>{`| Bonus rolls:  ${entry.bonusRolls} `}</span>}
+          {entry.bonusRolls[0] && (
+            <span>{`| Bonus rolls:  ${entry.bonusRolls} `}</span>
+          )}
 
           {entry.successes >= 5 ? (
-            <b className="exceptional"> Exceptional Success! {entry.successes} </b>
+            <b className="exceptional">
+              {" "}
+              Exceptional Success! {entry.successes}{" "}
+            </b>
           ) : (
-            <span>{" "} | Successes: <b>{entry.successes}</b></span>
+            <span>
+              {" "}
+              | Successes: <b>{entry.successes}</b>
+            </span>
           )}
 
           <Comment entry={entry} addComment={addComment} />
         </div>
       )}
-    </div >
+    </div>
   );
 }
 
